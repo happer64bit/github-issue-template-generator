@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createSignal, For } from "solid-js";
 import type { Component } from "solid-js";
 import PlusIcon from "lucide-solid/icons/plus";
 import Header from "./components/Header";
@@ -6,6 +6,7 @@ import Button from "./components/ui/Button";
 import Input from "./components/ui/Input";
 import Textarea from "./components/ui/Textarea";
 import Select from "./components/ui/Select";
+import { Switch, Match } from "solid-js";
 
 interface Section {
   type: "Markdown" | "Textarea" | "Input" | "Dropdown";
@@ -53,67 +54,78 @@ const App: Component = () => {
               <h2 class="text-lg">Body</h2>
               <div class="space-y-2">
                 <div class="space-y-2 divide-y-[1px]">
-                  {sections().map((section, index) => (
-                    <div class="space-y-3">
-                      <Select
-                        class="block"
-                        value={section.type}
-                        onChange={(e) => handleChange(index, "type", e.target.value as Section["type"])}
-                      >
-                        <option value="Markdown">Markdown</option>
-                        <option value="Textarea">Textarea</option>
-                        <option value="Input">Input</option>
-                        <option value="Dropdown">Dropdown</option>
-                      </Select>
-                      <div class="space-y-2">
-                        {section.type === "Input" && (
-                          <>
-                            <label>Placeholder</label>
-                            <Input
-                              class="w-full block"
-                              placeholder="Enter placeholder"
-                              value={section.value}
-                              onChange={(e) => handleChange(index, "value", e.target.value)}
-                            />
-                          </>
-                        )}
-                        {section.type === "Textarea" && (
-                          <>
-                            <label>Value</label>
-                            <Textarea
-                              rows={3}
-                              class="w-full block"
-                              value={section.value}
-                              onChange={(e) => handleChange(index, "value", e.target.value)}
-                            />
-                          </>
-                        )}
-                        {section.type === "Dropdown" && (
-                          <>
-                            <label>Options (comma-separated)</label>
-                            <Input
-                              class="w-full block"
-                              placeholder="Enter options"
-                              value={section.value}
-                              onChange={(e) => handleChange(index, "value", e.target.value)}
-                            />
-                          </>
-                        )}
-                        {section.type === "Markdown" && (
-                          <>
-                            <label>Markdown Content</label>
-                            <Textarea
-                              rows={3}
-                              class="w-full block"
-                              placeholder="Enter markdown content"
-                              value={section.value}
-                              onChange={(e) => handleChange(index, "value", e.target.value)}
-                            />
-                          </>
-                        )}
+                  <For each={sections()}>
+                    {(section, index) => (
+                      <div class="space-y-3">
+                        <Select
+                          class="block"
+                          value={section.type}
+                          onChange={(e) => handleChange(index(), "type", e.target.value as Section["type"])}
+                        >
+                          <option value="Markdown">Markdown</option>
+                          <option value="Textarea">Textarea</option>
+                          <option value="Input">Input</option>
+                          <option value="Dropdown">Dropdown</option>
+                        </Select>
+                        <div class="space-y-2">
+                          <Switch fallback={<div>Not Found</div>}>
+                            <Match when={section.type === "Input"}>
+                              <>
+                                <label>Placeholder</label>
+                                <Input
+                                  class="w-full block"
+                                  placeholder="Enter placeholder"
+                                  value={section.value}
+                                  onChange={(e) => handleChange(index(), "value", e.target.value)}
+                                />
+                                <label>Value</label>
+                                <Input
+                                  class="w-full block"
+                                  placeholder="Enter value"
+                                  value={section.value}
+                                  onChange={(e) => handleChange(index(), "value", e.target.value)}
+                                />
+                              </>
+                            </Match>
+                            <Match when={section.type === "Textarea"}>
+                              <>
+                                <label>Value</label>
+                                <Textarea
+                                  rows={3}
+                                  class="w-full block"
+                                  value={section.value}
+                                  onChange={(e) => handleChange(index(), "value", e.target.value)}
+                                />
+                              </>
+                            </Match>
+                            <Match when={section.type === "Dropdown"}>
+                              <>
+                                <label>Options (comma-separated)</label>
+                                <Input
+                                  class="w-full block"
+                                  placeholder="Enter options"
+                                  value={section.value}
+                                  onChange={(e) => handleChange(index(), "value", e.target.value)}
+                                />
+                              </>
+                            </Match>
+                            <Match when={section.type === "Markdown"}>
+                              <>
+                                <label>Markdown Content</label>
+                                <Textarea
+                                  rows={3}
+                                  class="w-full block"
+                                  placeholder="Enter markdown content"
+                                  value={section.value}
+                                  onChange={(e) => handleChange(index(), "value", e.target.value)}
+                                />
+                              </>
+                            </Match>
+                          </Switch>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )}
+                  </For>
                 </div>
                 <div class="flex justify-end mt-4">
                   <Button
