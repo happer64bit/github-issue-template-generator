@@ -1,16 +1,18 @@
+import { createSignal, createEffect } from "solid-js";
 import { createStore } from "solid-js/store";
-import { createEffect, For, Show } from "solid-js";
+import { For, Show } from "solid-js";
 import type { Component } from "solid-js";
 import PlusIcon from "lucide-solid/icons/plus";
+import { CopyIcon } from "lucide-solid";
 import Header from "./components/Header";
 import Button from "./components/ui/Button";
 import Input from "./components/ui/Input";
 import Textarea from "./components/ui/Textarea";
 import Select from "./components/ui/Select";
 import { stringify } from 'yaml';
-import 'prismjs'
 import { Highlight } from "solid-highlight";
 
+import 'prismjs'
 import 'solid-devtools';
 import '@jongwooo/prism-theme-github/themes/prism-github-default-auto.min.css';
 import "prismjs/components/prism-yaml";
@@ -35,6 +37,8 @@ const App: Component = () => {
     sections: [{ type: "Markdown", value: "" }] as Section[],
     yamlOutput: "",
   });
+
+  const [copied, setCopied] = createSignal(false);
 
   const addSection = () => {
     setStore("sections", [...store.sections, { type: "Markdown", value: "" }]);
@@ -72,6 +76,12 @@ const App: Component = () => {
     setStore("yamlOutput", generateYaml());
   });
 
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(store.yamlOutput);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
+  };
+
   return (
     <>
       <Header />
@@ -104,7 +114,7 @@ const App: Component = () => {
             ))}
             <div>
               <h2 class="text-lg">Body</h2>
-              <div class="space-y-2 divide-y-[1px]">
+              <div class="space-y-2 divide-y-[1px] dark:divide-white/20">
                 <For each={store.sections}>
                   {(section, index) => (
                     <div class="space-y-3">
@@ -186,7 +196,7 @@ const App: Component = () => {
                     </div>
                   )}
                 </For>
-                <div class="flex justify-end my-6">
+                <div class="flex justify-end my-6 py-4">
                   <Button
                     variety="primary"
                     class="flex gap-1 py-1.5 items-center"
@@ -199,7 +209,16 @@ const App: Component = () => {
               </div>
             </div>
           </div>
-          <div>
+          <div class="mt-6">
+            <div class="flex justify-end">
+              <button
+                class="px-4 py-1 flex items-center gap-2 text-sm hover:bg-black/10 dark:hover:bg-white/10 rounded transform duration-200"
+                onClick={handleCopy}
+              >
+                {copied() ? "Copied" : "Copy"}
+                <CopyIcon size={17} />
+              </button>
+            </div>
             <Highlight language="yaml">
               {store.yamlOutput}
             </Highlight>

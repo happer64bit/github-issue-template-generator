@@ -4,4 +4,5 @@
 
 body {
   @apply bg-white text-black dark:bg-[#0d1017] dark:text-white;
+  height: 100%;
 }
