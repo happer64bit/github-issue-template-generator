@@ -8,7 +8,7 @@ import Input from "./components/ui/Input";
 import Textarea from "./components/ui/Textarea";
 import Select from "./components/ui/Select";
 import { stringify } from 'yaml';
-
+import 'prismjs'
 import { Highlight } from "solid-highlight";
 
 import 'solid-devtools';
