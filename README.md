@@ -1,28 +1,16 @@
-## Usage
+![GitHub Issue Template Generator](./.github/assets/thumbnail.jpeg)
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+# GitHub Issue Template Generator
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+A tool to generate custom GitHub issue templates. This project helps you create issue templates with sections like Markdown, Input, Textarea, Dropdown, and Checkboxes, allowing for easy configuration of your project's issue management.
 
-## Available Scripts
+Website: https://happer64bit.github.io/github-issue-template-generator
 
-In the project directory, you can run:
+## Donation
 
-### `npm run dev`
+If you find this project helpful, consider supporting its development by making a donation. Your contributions help cover the costs of maintaining and improving the tool, ensuring it continues to be available for everyone.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+Solana: `EK48PtUR2vXA7wTzUiNuUpmS6peXWWmmrqncNxFn3sL7`
+ERC20: `0x6e47eDAdA0A25f38f2c2e3851256E455ed17A8A0`
 
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-Learn more about deploying your application with the [documentations](https://vitejs.dev/guide/static-deploy.html)
+Thank you for your support!
