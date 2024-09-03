@@ -7,5 +7,5 @@ export default defineConfig({
     solid(),
     devtools()
   ],
-  // base: "/github-issue-template-generator"
+  base: "/github-issue-template-generator"
 })
