@@ -11,18 +11,27 @@ importers:
       '@fontsource-variable/noto-sans':
         specifier: ^5.0.5
         version: 5.0.5
+      '@jongwooo/prism-theme-github':
+        specifier: ^1.14.0
+        version: 1.14.0
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.44)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
+      highlight.js:
+        specifier: ^11.10.0
+        version: 11.10.0
       lucide-solid:
         specifier: ^0.438.0
         version: 0.438.0(solid-js@1.8.22)
       postcss:
         specifier: ^8.4.44
         version: 8.4.44
+      prismjs:
+        specifier: ^1.29.0
+        version: 1.29.0
       solid-js:
         specifier: ^1.8.20
         version: 1.8.22
@@ -32,7 +41,13 @@ importers:
       tailwindcss:
         specifier: ^3.4.10
         version: 3.4.10
+      yaml:
+        specifier: ^2.5.0
+        version: 2.5.0
     devDependencies:
+      '@types/prismjs':
+        specifier: ^1.26.4
+        version: 1.26.4
       typescript:
         specifier: ^5.5.3
         version: 5.5.4
@@ -283,6 +298,9 @@ packages:
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
 
+  '@jongwooo/prism-theme-github@1.14.0':
+    resolution: {integrity: sha512-EVZTETXkbGmmRm0lNCVqfrRMPyKC+kFBwxgP9a8wVwi5OAk+Iw3GzY8LaRNNoVL7nKFGtY6tmydRpVBM1b2Paw==}
+
   '@jridgewell/gen-mapping@0.3.5':
     resolution: {integrity: sha512-IzL8ZoEDIBRWEzlCcRhOaCupYyN5gdIK+Q6fbFdPDg6HqX6jpkItn7DFIpW9LQzXG6Df9sA7+OKnq0qlz/GaQg==}
     engines: {node: '>=6.0.0'}
@@ -411,6 +429,9 @@ packages:
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+
+  '@types/prismjs@1.26.4':
+    resolution: {integrity: sha512-rlAnzkW2sZOjbqZ743IHUhFcvzaGbqijwOu8QZnZCjfQzBqFE3s4lOTJEsxikImav9uzz/42I+O7YUs1mWgMlg==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -626,6 +647,10 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
+  highlight.js@11.10.0:
+    resolution: {integrity: sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==}
+    engines: {node: '>=12.0.0'}
+
   html-entities@2.3.3:
     resolution: {integrity: sha512-DV5Ln36z34NNTDgnz0EWGBLZENelNAtkiFA4kyNOG2tDI6Mz1uSWiq1wAKdyjnJwyDiDO7Fa2SO1CTxPXL8VxA==}
 
@@ -821,6 +846,10 @@ packages:
   postcss@8.4.44:
     resolution: {integrity: sha512-Aweb9unOEpQ3ezu4Q00DPvvM2ZTUitJdNKeP/+uQgr1IBIqu574IaZoURId7BKtWMREwzKa9OgzPzezWGPWFQw==}
     engines: {node: ^10 || ^12 || >=14}
+
+  prismjs@1.29.0:
+    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+    engines: {node: '>=6'}
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -1240,6 +1269,8 @@ snapshots:
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
+  '@jongwooo/prism-theme-github@1.14.0': {}
+
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:
       '@jridgewell/set-array': 1.2.1
@@ -1342,6 +1373,8 @@ snapshots:
       '@babel/types': 7.25.6
 
   '@types/estree@1.0.5': {}
+
+  '@types/prismjs@1.26.4': {}
 
   ansi-regex@5.0.1: {}
 
@@ -1564,6 +1597,8 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
+  highlight.js@11.10.0: {}
+
   html-entities@2.3.3: {}
 
   is-binary-path@2.1.0:
@@ -1710,6 +1745,8 @@ snapshots:
       nanoid: 3.3.7
       picocolors: 1.0.1
       source-map-js: 1.2.0
+
+  prismjs@1.29.0: {}
 
   queue-microtask@1.2.3: {}
 
