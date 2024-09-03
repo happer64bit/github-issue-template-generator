@@ -1,8 +1,3 @@
-import { useColorMode, useColorModeValue } from "@kobalte/core"
-import { MoonIcon, SunIcon } from "lucide-solid"
-import { Switch, Match } from 'solid-js';
-import { ThemeProvider } from "solid-theme-provider";
-
 export default function Header() {
     return (
         <header class="bg-[#f6f8fa] border-b border-b-[#d1d9e0] dark:bg-[#010409] dark:border-b-[#3d444d] dark:text-white w-full">
