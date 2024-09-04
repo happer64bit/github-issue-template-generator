@@ -1,0 +1,21 @@
+name: Bug Report
+title: "Bug: "
+description: Report Bugs About This App
+body:
+  - type: input
+    id: input
+    attributes:
+      type: Input
+      value: ""
+      label: Used Web Browser
+      description: Name of Web Browser (Eg. Edge, Chrome, Firefox, Safari)
+      placeholder: Browser Name
+  - type: textarea
+    id: textarea
+    attributes:
+      type: Textarea
+      value: ""
+      options:
+        - ""
+      label: Error Description
+      description: How does this error occur?
