@@ -1,0 +1,15 @@
+name: Feature Request
+title: Feature Request
+description: Request Feature That You wanted
+body:
+  - type: input
+    id: input-0
+    attributes:
+      label: Feature Name
+      description: Name Of feature
+      placeholder: Feature Name
+  - type: textarea
+    id: textarea-1
+    attributes:
+      label: Description
+      description: Describe More Information
