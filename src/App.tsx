@@ -54,23 +54,36 @@ const App: Component = () => {
       title: store.title,
       description: store.description,
     };
-
+  
     const formData = store.sections.map((section) => {
       const result: any = { type: section.type.toLowerCase() };
+      
       if (section.type !== "Markdown") {
         result.id = section.type.toLowerCase().replace(/ /g, '-');
-        result.attributes = { ...section };
+        result.attributes = {};
+        
+        for (const key in section) {
+          const value = section[key as keyof Section];
+          if (value && key !== "type") {
+            result.attributes[key] = value;
+          }
+        }
+        
         if (section.type === "Dropdown" && section.options) {
           result.attributes.default = 0;
         }
       } else {
-        result.attributes = { value: section.value };
+        if (section.value) {
+          result.attributes = { value: section.value };
+        }
       }
+  
       return result;
-    });
-
+    }).filter((item) => Object.keys(item.attributes || {}).length > 0);
+  
     return stringify({ ...topFields, body: formData });
   };
+  
 
   createEffect(() => {
     setStore("yamlOutput", generateYaml());
