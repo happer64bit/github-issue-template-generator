@@ -1,21 +1,13 @@
-name: Bug Report
+name: "Bug Report "
 title: "Bug: "
-description: Report Bugs About This App
+description: Bugs Report About GitHub Issue Template Generator
 body:
   - type: input
-    id: input
+    id: web-browser
     attributes:
-      type: Input
-      value: ""
-      label: Used Web Browser
-      description: Name of Web Browser (Eg. Edge, Chrome, Firefox, Safari)
-      placeholder: Browser Name
+      label: Web Browser
+      description: Web Browser Where the error occur on
   - type: textarea
-    id: textarea
+    id: error-description
     attributes:
-      type: Textarea
-      value: ""
-      options:
-        - ""
-      label: Error Description
-      description: How does this error occur?
+      label: Describe the error
