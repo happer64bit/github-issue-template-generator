@@ -55,11 +55,11 @@ const App: Component = () => {
       description: store.description,
     };
   
-    const formData = store.sections.map((section) => {
+    const formData = store.sections.map((section, index) => {
       const result: any = { type: section.type.toLowerCase() };
       
       if (section.type !== "Markdown") {
-        result.id = section.type.toLowerCase().replace(/ /g, '-');
+        result.id = `${section.type.toLowerCase().replace(/ /g, '-')}-${index}`;
         result.attributes = {};
         
         for (const key in section) {
@@ -82,8 +82,7 @@ const App: Component = () => {
     }).filter((item) => Object.keys(item.attributes || {}).length > 0);
   
     return stringify({ ...topFields, body: formData });
-  };
-  
+  };  
 
   createEffect(() => {
     setStore("yamlOutput", generateYaml());
