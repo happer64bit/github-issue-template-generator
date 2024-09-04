@@ -2,12 +2,12 @@ name: "Bug Report "
 title: "Bug: "
 description: Bugs Report About GitHub Issue Template Generator
 body:
-  - type: textarea
-    id: textarea
+  - type: input
+    id: web-browser
     attributes:
       label: Web Browser
       description: Web Browser Where the error occur on
   - type: textarea
-    id: textarea
+    id: error-description
     attributes:
       label: Describe the error
