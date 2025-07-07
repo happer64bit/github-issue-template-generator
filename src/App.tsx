@@ -75,7 +75,10 @@ const App: Component = () => {
 
           if (section.description) attributes.description = section.description;
           if (section.placeholder) attributes.placeholder = section.placeholder;
-          if (section.required !== undefined) attributes.required = section.required;
+          if (section.required !== undefined) {
+            attributes.validations = { required: section.required };
+          }
+
           if (section.multiple !== undefined) attributes.multiple = section.multiple;
 
           if (section.type === "Input" || section.type === "Textarea") {
@@ -243,16 +246,19 @@ const App: Component = () => {
                               />
                             </>
                           )}
-                          <label>
-                            <input
-                              type="checkbox"
-                              checked={section.required || false}
-                              onChange={(e) =>
-                                handleChange(index(), { required: e.currentTarget.checked })
-                              }
-                            />
-                            Required
-                          </label>
+                          <div class="mt-4">
+                            <label class="flex items-center">
+                              <input
+                                type="checkbox"
+                                checked={section.required || false}
+                                onChange={(e) =>
+                                  handleChange(index(), { required: e.currentTarget.checked })
+                                }
+                              />
+                              <div class="px-1"></div>
+                              Required
+                            </label>
+                          </div>
                         </Show>
 
                         <Show when={section.type === "Markdown"}>
