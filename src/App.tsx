@@ -75,10 +75,6 @@ const App: Component = () => {
 
           if (section.description) attributes.description = section.description;
           if (section.placeholder) attributes.placeholder = section.placeholder;
-          if (section.required !== undefined) {
-            attributes.validations = { required: section.required };
-          }
-
           if (section.multiple !== undefined) attributes.multiple = section.multiple;
 
           if (section.type === "Input" || section.type === "Textarea") {
@@ -97,7 +93,15 @@ const App: Component = () => {
             }
           }
 
+          let validations;
+          if (section.required !== undefined) {
+            validations = { required: section.required };
+          }
+
           result.attributes = attributes;
+          if (validations) {
+            result.validations = validations;
+          }
         } else if (section.value) {
           result.attributes = { value: section.value };
         }
