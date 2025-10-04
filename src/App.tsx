@@ -32,7 +32,7 @@ const App: Component = () => {
     title: "",
     description: "",
     labels: [] as string[],
-    project: "",
+    projects: [] as string[],
     assignees: "",
     sections: [{ type: "Markdown", value: "" }] as Section[],
   });
@@ -56,10 +56,11 @@ const App: Component = () => {
       name: store.name,
       title: store.title,
       description: store.description,
+      projects: store.projects
     };
 
     if (store.labels.length) topFields.labels = store.labels;
-    if (store.project.trim()) topFields.project = store.project;
+    if (store.projects.length) topFields.projects = store.projects;
     if (store.assignees.trim()) topFields.assignees = store.assignees;
 
     const formData = store.sections
@@ -127,7 +128,7 @@ const App: Component = () => {
       <div class="container">
         <div class="grid md:grid-cols-2 gap-10">
           <div class="space-y-4 my-4">
-            {["name", "title", "description", "labels", "project", "assignees"].map((field) => (
+            {["name", "title", "description", "labels", "projects", "assignees"].map((field) => (
               <div class="space-y-1">
                 <label for={`${field}-input`} class="text-sm capitalize">{field}</label>
                 {field === "description" ? (
@@ -145,17 +146,17 @@ const App: Component = () => {
                     placeholder={`Enter ${field}`}
                     class="w-full"
                     value={
-                      field === "labels"
+                      field === "labels" || field === "projects"
                         ? (store.labels || []).join(", ")
                         : (store[field as keyof typeof store] as string)
                     }
                     onInput={(e) => {
-                      if (field === "labels") {
+                      if (field === "labels" || field === "projects") {
                         const newLabels = e.currentTarget.value
                           .split(",")
                           .map((label) => label.trim())
                           .filter(Boolean);
-                        setStore("labels", newLabels);
+                        setStore(field, newLabels);
                       } else {
                         setStore(field as keyof typeof store, e.currentTarget.value);
                       }
