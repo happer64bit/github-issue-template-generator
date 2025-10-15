@@ -16,7 +16,7 @@ import "@jongwooo/prism-theme-github/themes/prism-github-default-auto.min.css";
 import "prismjs/components/prism-yaml";
 
 interface Section {
-  type: "Markdown" | "Textarea" | "Input" | "Dropdown" | "Checkboxes";
+  type: "markdown" | "textarea" | "input" | "dropdown" | "checkboxes";
   labels?: string[];
   description?: string;
   placeholder?: string;
@@ -34,13 +34,13 @@ const App: Component = () => {
     labels: [] as string[],
     projects: [] as string[],
     assignees: "",
-    sections: [{ type: "Markdown", value: "" }] as Section[],
+    sections: [{ type: "markdown", value: "" }] as Section[],
   });
 
   const [copied, setCopied] = createSignal(false);
 
   const addSection = () => {
-    setStore("sections", (s) => [...s, { type: "Markdown", value: "" }]);
+    setStore("sections", (s) => [...s, { type: "markdown", value: "" }]);
   };
 
   const removeSection = (index: number) => {
@@ -67,7 +67,7 @@ const App: Component = () => {
       .map((section, index) => {
         const result: any = { type: section.type.toLowerCase() };
 
-        if (section.type !== "Markdown") {
+        if (section.type !== "markdown") {
           result.id = `${section.type.toLowerCase().replace(/ /g, "-")}-${index}`;
           const attributes: any = {};
 
@@ -78,17 +78,17 @@ const App: Component = () => {
           if (section.placeholder) attributes.placeholder = section.placeholder;
           if (section.multiple !== undefined) attributes.multiple = section.multiple;
 
-          if (section.type === "Input" || section.type === "Textarea") {
+          if (section.type === "input" || section.type === "textarea") {
             if (section.value) attributes.value = section.value;
           }
 
-          if (section.type === "Dropdown") {
+          if (section.type === "dropdown") {
             if (section.options && section.options.length > 0) {
               attributes.options = section.options;
             }
           }
 
-          if (section.type === "Checkboxes") {
+          if (section.type === "checkboxes") {
             if (section.options && section.options.length > 0) {
               attributes.options = section.options.map((opt) => ({ label: opt }));
             }
@@ -172,20 +172,27 @@ const App: Component = () => {
                 <For each={store.sections}>
                   {(section, index) => (
                     <div class="space-y-3 py-2">
-                      <Select
-                        class="block my-4"
-                        value={section.type}
-                        onInput={(e) =>
-                          handleChange(index(), { type: e.currentTarget.value as Section["type"] })
-                        }
-                      >
-                        {["Markdown", "Textarea", "Input", "Dropdown", "Checkboxes"].map((type) => (
-                          <option value={type}>{type}</option>
-                        ))}
-                      </Select>
-
+                      <div class="flex justify-between items-center">
+                        <Select
+                          class="block my-4 capitalize"
+                          value={section.type}
+                          onInput={(e) =>
+                            handleChange(index(), { type: e.currentTarget.value as Section["type"] })
+                          }
+                        >
+                          {["markdown", "textarea", "input", "dropdown", "checkboxes"].map((type) => (
+                            <option value={type}>{type}</option>
+                          ))}
+                        </Select>
+                        <Button
+                          variety="icon"
+                          onClick={() => removeSection(index())}
+                        >
+                          <TrashIcon size={16} class="text-red-600" />
+                        </Button>
+                      </div>
                       <div class="space-y-2">
-                        <Show when={section.type !== "Markdown"}>
+                        <Show when={section.type !== "markdown"}>
                           <Input
                             class="w-full block"
                             placeholder="Enter label (used as title)"
@@ -203,7 +210,7 @@ const App: Component = () => {
                               handleChange(index(), { description: e.currentTarget.value })
                             }
                           />
-                          {section.type === "Input" && (
+                          {section.type === "input" && (
                             <>
                               <Input
                                 class="w-full block"
@@ -223,7 +230,7 @@ const App: Component = () => {
                               />
                             </>
                           )}
-                          {section.type === "Textarea" && (
+                          {section.type === "textarea" && (
                             <Textarea
                               rows={3}
                               class="w-full block"
@@ -234,7 +241,7 @@ const App: Component = () => {
                               }
                             />
                           )}
-                          {(section.type === "Dropdown" || section.type === "Checkboxes") && (
+                          {(section.type === "dropdown" || section.type === "checkboxes") && (
                             <>
                               <Input
                                 class="w-full block"
@@ -266,7 +273,7 @@ const App: Component = () => {
                           </div>
                         </Show>
 
-                        <Show when={section.type === "Markdown"}>
+                        <Show when={section.type === "markdown"}>
                           <Textarea
                             rows={3}
                             class="w-full block"
@@ -275,14 +282,6 @@ const App: Component = () => {
                             onInput={(e) => handleChange(index(), { value: e.currentTarget.value })}
                           />
                         </Show>
-
-                        <Button
-                          variety="ghost"
-                          class="flex gap-1 text-red-600"
-                          onClick={() => removeSection(index())}
-                        >
-                          <TrashIcon size={14} /> Remove
-                        </Button>
                       </div>
                     </div>
                   )}
@@ -305,7 +304,7 @@ const App: Component = () => {
           <div class="mt-6">
             <div class="flex justify-end">
               <button
-                class="px-4 py-1 flex items-center gap-2 text-sm hover:bg-black/10 dark:hover:bg-white/10 rounded transform duration-200 bg-[#171b25] border border-[#2f2f2f]"
+                class="px-4 py-1 flex items-center gap-2 text-sm hover:bg-black/5 dark:hover:bg-white/5 rounded transform duration-200 border border-[#b7b7b7] dark:border-[#2f2f2f]"
                 onClick={handleCopy}
               >
                 {copied() ? "Copied" : "Copy"}
